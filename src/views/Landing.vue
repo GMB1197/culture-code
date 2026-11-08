@@ -3,7 +3,6 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { RouterLink } from 'vue-router'
 import { INSTAGRAM } from '../lib/config'
 
-const GITHUB = 'https://github.com/GMB1197/culture-code'
 
 /* ---------- sfondo: pioggia di bit che reagisce al puntatore ---------- */
 const cv = ref(null)
@@ -58,7 +57,7 @@ function onMove(e) {
 }
 
 /* ---------- testo che si scrive da solo ---------- */
-const lines = ['informatica spiegata bene', 'cultura che si può toccare', 'codice che è di tutti']
+const lines = ['informatica spiegata bene', 'cultura che si può toccare', 'sapere aperto a tutti']
 const typed = ref('')
 let typeTimer = null
 function typeLoop() {
@@ -121,10 +120,10 @@ onBeforeUnmount(() => {
 
 const topics = ['IP', 'DNS', 'password', 'database', 'cloud', 'intelligenza artificiale', 'binario', 'crittografia', 'realtà aumentata', 'audioguide', 'Napoli', 'arte']
 const principles = [
-  ['Leggi', 'Il codice è visibile: puoi aprirlo e capire come funziona ogni gioco.'],
-  ['Copia', 'Prendilo, usalo per un tuo progetto, a scuola, in un museo.'],
-  ['Modifica', 'Cambia domande, colori, lingua. Il tuo fork è il benvenuto.'],
-  ['Condividi', "Ridistribuiscilo. Basta mantenere l'avviso di copyright."]
+  ['Gratis', 'Nessun pagamento, nessun abbonamento, nessun account.'],
+  ['Aperto', 'Non servono basi: si parte da zero, con calma.'],
+  ['Curioso', "L'unico requisito è la voglia di imparare."],
+  ['Condiviso', 'Se ti piace, passa la voce: il sapere cresce quando circola.']
 ]
 const local = [
   ['Nessun account', 'Entri e giochi. Niente registrazione, niente email.'],
@@ -140,7 +139,7 @@ const local = [
     <section class="hero" @mousemove="onMove" @touchmove.passive="onMove">
       <canvas ref="cv" class="rain" aria-hidden="true"></canvas>
       <div class="hero-in" :style="{ transform: `translateY(${heroY * 0.25}px)`, opacity: Math.max(0, 1 - heroY / 600) }">
-        <p class="pill">profilo social · open source · @cltrcode</p>
+        <p class="pill">profilo social · sapere aperto · @cltrcode</p>
         <h1 class="mega">Il codice<br />è <em>cultura</em>.</h1>
         <p class="type mono"><span>&gt; </span>{{ typed }}<i class="caret"></i></p>
         <div class="row" style="margin-top:1.4rem">
@@ -214,25 +213,25 @@ const local = [
       </div>
     </section>
 
-    <!-- OPEN SOURCE MIT -->
+    <!-- OPEN SOURCE -->
     <section class="sec two-col">
       <div class="rv">
         <p class="pill">03 · open source</p>
-        <h2 class="h2">La conoscenza è come il codice: si apre.</h2>
-        <p class="lead">Culture Code è rilasciato con <strong>licenza MIT</strong>, una delle più semplici e permissive. Non spieghiamo solo come funziona l'informatica: ti lasciamo smontare il progetto e riusarlo.</p>
+        <h2 class="h2">Open source, ma del sapere.</h2>
+        <p class="lead">Per noi "open source" non vuol dire scaricare un codice: vuol dire che la conoscenza è <strong>aperta a tutti</strong>. Come in una licenza open source, ma scritta da noi: la <strong>licenza cltrcode</strong>. Puoi usare, capire e condividere quello che impari, senza pagare.</p>
         <ul class="principles">
           <li v-for="([t, d], i) in principles" :key="t" class="rv" :class="'d' + (i + 1)"><b>{{ t }}</b><span>{{ d }}</span></li>
         </ul>
-        <a class="btn" :href="GITHUB" target="_blank" rel="noopener">Vedi il codice su GitHub</a>
+        <RouterLink class="btn" to="/giochi">Inizia a imparare</RouterLink>
       </div>
-      <div class="rv d2 term" role="img" aria-label="Terminale che mostra i comandi per clonare il progetto e leggere la licenza">
-        <div class="term-bar"><i></i><i></i><i></i><span class="mono tiny">~/cltrcode</span></div>
-        <pre class="mono"><span class="l l1"><u>$</u> git clone github.com/GMB1197/culture-code</span>
-<span class="l l2"><u>$</u> cd culture-code &amp;&amp; npm install</span>
-<span class="l l3"><u>$</u> cat LICENSE | head -n 1</span>
-<span class="l l4 ok">MIT License</span>
-<span class="l l5"><u>$</u> npm run dev</span>
-<span class="l l6 ok">➜ Local: http://localhost:5173/</span><span class="l l7"><u>$</u> <i class="caret"></i></span></pre>
+      <div class="rv d2 term" role="img" aria-label="Terminale che mostra la licenza Culture Code: gratis per chiunque abbia voglia di imparare">
+        <div class="term-bar"><i></i><i></i><i></i><span class="mono tiny">~/cultura</span></div>
+        <pre class="mono"><span class="l l1"><u>$</u> cat LICENZA</span>
+<span class="l l2 ok">Licenza cltrcode · scritta da noi</span>
+<span class="l l3">Permesso concesso, gratis, a chiunque:</span>
+<span class="l l4">usare, capire, giocare e condividere.</span>
+<span class="l l5">Condizione unica: la voglia di imparare.</span>
+<span class="l l6">Nessuna garanzia, tranne che ti divertirai.</span><span class="l l7"><u>$</u> <i class="caret"></i></span></pre>
       </div>
     </section>
 
@@ -240,8 +239,8 @@ const local = [
     <section class="sec">
       <div class="rv center">
         <p class="pill">04 · stile on-premise</p>
-        <h2 class="h2">Tutto in casa tua, non nel cloud di altri.</h2>
-        <p class="lead mx">Come un software on-premise, l'esperienza gira sul tuo dispositivo. Il sito ti consegna l'app, poi il lavoro lo fa il tuo browser.</p>
+        <h2 class="h2">Il sapere resta a casa tua, non in affitto.</h2>
+        <p class="lead mx">Come un software on-premise, l'esperienza gira a casa tua, cioè sul tuo dispositivo: nessun account, nessun abbonamento, nessun cloud di altri. Il sito ti consegna l'app, poi il lavoro lo fa il tuo browser.</p>
       </div>
 
       <div class="rv d2 diagram" aria-hidden="true">
@@ -272,8 +271,7 @@ const local = [
       <span class="mono">&lt;/&gt; culture code</span>
       <span>
         <a :href="INSTAGRAM" target="_blank" rel="noopener">Instagram</a> ·
-        <a :href="GITHUB" target="_blank" rel="noopener">GitHub</a> ·
-        Licenza MIT
+        Licenza cltrcode
       </span>
     </footer>
   </div>
@@ -357,7 +355,7 @@ const local = [
 .term-bar i { width: 10px; height: 10px; border-radius: 50%; background: #3a3a4a; }
 .term-bar i:nth-child(1) { background: #e9695c } .term-bar i:nth-child(2) { background: #f2b45a } .term-bar i:nth-child(3) { background: #6fcf97 }
 .term-bar span { margin-left: auto; color: var(--muted); }
-.term pre { margin: 0; padding: 1rem; font-size: .8rem; line-height: 1.8; overflow-x: auto; color: #cfcbd8; }
+.term pre { margin: 0; padding: 1rem; font-size: .8rem; line-height: 1.8; white-space: normal; overflow-x: auto; color: #cfcbd8; }
 .term u { text-decoration: none; color: var(--accent); }
 .term .ok { color: var(--good); }
 .term .l { display: block; opacity: 0; }

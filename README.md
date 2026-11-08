@@ -45,4 +45,4 @@ Quando hai il dominio definitivo, aggiungi su Vercel la variabile `VITE_SITE_URL
 
 ## Licenza
 
-Codice rilasciato con licenza [MIT](LICENSE): puoi leggerlo, copiarlo, modificarlo e condividerlo. Controlla l'intestazione del copyright nel file `LICENSE`.
+Licenza cltrcode (vedi [LICENSE](LICENSE)): uso, studio, modifica e condivisione liberi e gratuiti, citando Culture Code (@cltrcode). Il nome e il marchio non sono inclusi.
