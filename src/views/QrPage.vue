@@ -28,15 +28,15 @@ const reelsWithLink = REELS
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>QR e reel</h1>
   <p class="muted">QR code pronti da mettere nei video, nelle storie o nei cartelli. Scaricali con il tasto. Se il sito è su un dominio tuo, imposta <span class="mono">VITE_SITE_URL</span> prima della build.</p>
 
   <div class="card">
-    <h2>Reel → gioco</h2>
+    <h2>Reel › gioco</h2>
     <div v-for="r in reelsWithLink" :key="r.title" class="row between" style="margin-bottom:.5rem">
       <span>{{ r.title }}</span>
-      <RouterLink :to="r.game" class="note">apri gioco →</RouterLink>
+      <RouterLink :to="r.game" class="note">apri gioco <Ic n="arrowRight" /></RouterLink>
     </div>
     <p class="note">Per collegare i reel veri, modifica <span class="mono">src/lib/config.js</span>.</p>
   </div>

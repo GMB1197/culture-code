@@ -69,25 +69,25 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Museo in tasca</h1>
   <p class="muted">Cinque oggetti che hanno cambiato il modo di scrivere, calcolare e raccontare. Ascolta l'audioguida oppure inquadra con la fotocamera.</p>
 
   <div class="row" style="margin-bottom:1rem">
     <button v-for="(m, i) in MUSEUM" :key="m.id" class="btn" :class="{ ghost: i !== cur }" style="padding:.4rem .8rem" @click="select(i)">
-      {{ heard.includes(m.id) ? '✓' : m.emoji }}
+      <Ic :n="heard.includes(m.id) ? 'check' : m.ic" />
     </button>
   </div>
 
   <div class="card">
-    <div class="big">{{ stop.emoji }}</div>
+    <div class="big"><Ic :n="stop.ic" /></div>
     <p class="note" style="margin:.5rem 0 0">{{ stop.era }}</p>
     <h2>{{ stop.title }}</h2>
     <p>{{ stop.text }}</p>
     <div class="row">
-      <button v-if="canSpeak" class="btn" @click="speak">{{ speaking ? '⏹ Ferma' : '🎧 Ascolta' }}</button>
+      <button v-if="canSpeak" class="btn" @click="speak"><template v-if="speaking"><Ic n="stop" /> Ferma</template><template v-else><Ic n="headphones" /> Ascolta</template></button>
       <button class="btn ghost" @click="mark">{{ heard.includes(stop.id) ? 'Visitata ✓' : 'Segna come visitata' }}</button>
-      <button class="btn ghost" @click="openCam">📷 Realtà aumentata</button>
+      <button class="btn ghost" @click="openCam"><Ic n="camera" /> Realtà aumentata</button>
     </div>
     <p v-if="camError" class="note" style="margin-top:.6rem">{{ camError }}</p>
     <p class="note" style="margin-top:.8rem">Tappe visitate: {{ heard.length }} / {{ MUSEUM.length }}</p>
@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
   <div v-if="cam" class="ar">
     <video ref="video" autoplay playsinline muted></video>
     <div class="ar-card">
-      <div class="ar-emoji">{{ stop.emoji }}</div>
+      <div class="ar-emoji"><Ic :n="stop.ic" /></div>
       <strong>{{ stop.title }}</strong>
       <small>{{ stop.era }}</small>
       <p>{{ stop.text.split('. ')[0] }}.</p>

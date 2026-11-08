@@ -32,7 +32,7 @@ const tips = [
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Password Cracker</h1>
   <p class="muted">Scrivi una password e guarda quanto ci metterebbe un attaccante a indovinarla. Tutto resta nel tuo telefono: non viene inviata a nessuno.</p>
 
@@ -52,7 +52,7 @@ const tips = [
         <span class="note">entropia ≈ {{ res.entropy }} bit</span>
       </div>
       <div class="result">
-        ⏱️ Tempo medio per scoprirla:<br />
+        <Ic n="stopwatch" /> Tempo medio per scoprirla:<br />
         <strong style="font-size:1.4rem">{{ humanTime(res.seconds) }}</strong>
       </div>
       <ul v-if="res.flags.length" class="note" style="padding-left:1.1rem">

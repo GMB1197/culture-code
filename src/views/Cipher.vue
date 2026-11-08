@@ -56,12 +56,12 @@ function reset() {
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Decifra il messaggio</h1>
   <div class="row" style="margin-bottom:1rem">
     <button v-for="(l, i) in CIPHER_LEVELS" :key="l.id" class="btn" :class="{ ghost: i !== idx }"
       :style="{ padding: '.4rem .8rem' }" :disabled="i > solved.length" @click="go(i)">
-      {{ solved.includes(l.id) ? '✓' : l.id }}
+      <Ic v-if="solved.includes(l.id)" n="check" /><template v-else>{{ l.id }}</template>
     </button>
   </div>
 
@@ -84,7 +84,7 @@ function reset() {
         <button type="button" class="btn ghost" @click="showHint = !showHint">Aiuto</button>
       </div>
     </form>
-    <p v-if="showHint" class="note" style="margin-top:.7rem">💡 {{ lvl.hint }}</p>
+    <p v-if="showHint" class="note" style="margin-top:.7rem"><Ic n="lightbulb" /> {{ lvl.hint }}</p>
 
     <div v-if="status === 'ko'" class="result bad">Non è ancora questo. Controlla le lettere e riprova.</div>
     <div v-if="status === 'ok'" class="result good">
@@ -92,7 +92,7 @@ function reset() {
       <span class="note">{{ lvl.lesson }}</span>
       <div style="margin-top:.8rem">
         <button v-if="idx + 1 < CIPHER_LEVELS.length" class="btn" @click="next">Livello successivo</button>
-        <span v-else>🏆 Hai chiuso tutti i livelli!</span>
+        <span v-else><Ic n="trophy" /> Hai chiuso tutti i livelli!</span>
       </div>
     </div>
   </div>

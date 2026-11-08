@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import './style.css'
+import Ic from './components/Ic.vue'
+import { tilt, magnetic } from './lib/motion'
 import 'leaflet/dist/leaflet.css'
 import Landing from './views/Landing.vue'
 import Games from './views/Games.vue'
@@ -32,7 +34,11 @@ router.afterEach((to) => {
   document.title = to.meta.title === 'Culture Code' ? 'Culture Code' : `${to.meta.title} · Culture Code`
 })
 
-createApp(App).use(router).mount('#app')
+const app = createApp(App)
+app.component('Ic', Ic)
+app.directive('tilt', tilt)
+app.directive('magnetic', magnetic)
+app.use(router).mount('#app')
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault()

@@ -50,7 +50,7 @@ p { margin: 0 0 1rem; }
 /* dock stile Instagram, liquid glass */
 .dock {
   position: fixed; z-index: 30;
-  left: 50%; transform: translateX(-50%);
+  left: 0; right: 0; margin-inline: auto;
   bottom: calc(env(safe-area-inset-bottom) + .9rem);
   width: min(calc(100% - 1.6rem), 440px); height: 68px;
   display: grid; grid-template-columns: repeat(5, 1fr); align-items: stretch;
@@ -186,3 +186,11 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 
 /* landing a tutta larghezza */
 .page.wide { max-width: none; padding: 0 0 8rem; }
+
+/* icone FontAwesome: sempre #f2b45a */
+.svg-inline--fa { color: #f2b45a; }
+.btn:not(.ghost) .svg-inline--fa, .toast .svg-inline--fa { color: currentColor; }
+.dock-item .svg-inline--fa { width: 26px; height: 26px; opacity: .62; transition: opacity .25s, transform .25s cubic-bezier(.3, 1.5, .5, 1), filter .25s; }
+.dock-item.on .svg-inline--fa { opacity: 1; transform: scale(1.14); filter: drop-shadow(0 0 10px rgba(242, 180, 90, .7)); }
+.tile .ico .svg-inline--fa { font-size: 1.7rem; }
+.pin .svg-inline--fa { width: 18px; height: 18px; }

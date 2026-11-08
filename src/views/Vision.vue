@@ -215,7 +215,7 @@ const explain = computed(
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Il computer vede l'arte</h1>
   <p class="muted">Carica una foto (un quadro, un monumento, uno scorcio) e scopri come la "legge" un algoritmo. L'immagine non lascia mai il tuo dispositivo.</p>
 

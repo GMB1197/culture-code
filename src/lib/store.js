@@ -9,18 +9,18 @@ export const LEVELS = [
 ]
 
 export const BADGES = {
-  first: { icon: '✨', name: 'Prima scintilla', desc: 'Hai completato il tuo primo gioco' },
-  daily: { icon: '📅', name: 'Sfida accettata', desc: 'Hai completato una sfida del giorno' },
-  streak3: { icon: '🔥', name: 'In striscia', desc: '3 giorni di fila' },
-  streak7: { icon: '🌋', name: 'Settimana di fuoco', desc: '7 giorni di fila' },
-  crypto: { icon: '🔐', name: 'Decifratore', desc: 'Hai risolto tutti i livelli di crittografia' },
-  strongpw: { icon: '🛡️', name: 'Password blindata', desc: 'Una password che resiste per secoli' },
-  quiz: { icon: '🧠', name: 'Mente curiosa', desc: 'Punteggio pieno a Indovina il codice' },
-  dns: { icon: '🌐', name: 'Re del DNS', desc: 'Hai chiuso IP o DNS? con almeno 9 su 10' },
-  vision: { icon: '👁️', name: 'Occhio artificiale', desc: 'Hai fatto leggere un\'immagine al computer' },
-  museum: { icon: '🏛️', name: 'Visitatore', desc: 'Hai ascoltato tutte le tappe del museo' },
-  map: { icon: '🗺️', name: 'Esploratore di Napoli', desc: 'Hai superato tutte le sfide sulla mappa' },
-  binary: { icon: '💾', name: 'Nome in binario', desc: 'Hai tradotto il tuo nome' }
+  first: { icon: 'wand', name: 'Prima scintilla', desc: 'Hai completato il tuo primo gioco' },
+  daily: { icon: 'calendarCheck', name: 'Sfida accettata', desc: 'Hai completato una sfida del giorno' },
+  streak3: { icon: 'fire', name: 'In striscia', desc: '3 giorni di fila' },
+  streak7: { icon: 'bolt', name: 'Settimana di fuoco', desc: '7 giorni di fila' },
+  crypto: { icon: 'unlock', name: 'Decifratore', desc: 'Hai risolto tutti i livelli di crittografia' },
+  strongpw: { icon: 'shield', name: 'Password blindata', desc: 'Una password che resiste per secoli' },
+  quiz: { icon: 'brain', name: 'Mente curiosa', desc: 'Punteggio pieno a Indovina il codice' },
+  dns: { icon: 'globe', name: 'Re del DNS', desc: 'Hai chiuso IP o DNS? con almeno 9 su 10' },
+  vision: { icon: 'eye', name: 'Occhio artificiale', desc: 'Hai fatto leggere un\'immagine al computer' },
+  museum: { icon: 'landmark', name: 'Visitatore', desc: 'Hai ascoltato tutte le tappe del museo' },
+  map: { icon: 'map', name: 'Esploratore di Napoli', desc: 'Hai superato tutte le sfide sulla mappa' },
+  binary: { icon: 'chip', name: 'Nome in binario', desc: 'Hai tradotto il tuo nome' }
 }
 
 export function dayKey(d = new Date()) {

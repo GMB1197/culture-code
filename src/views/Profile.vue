@@ -20,23 +20,23 @@ const days = Object.entries(state.daily).sort().reverse().slice(0, 7)
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Il tuo profilo</h1>
 
   <div class="card">
     <div class="row between">
       <div><span class="pill">Livello</span><h2 style="margin:.4rem 0 0">{{ level.name }}</h2></div>
-      <div class="center"><div class="big">🔥</div><strong>{{ state.streak }}</strong> <span class="note">giorni</span></div>
+      <div class="center"><div class="big"><Ic n="fire" /></div><strong>{{ state.streak }}</strong> <span class="note">giorni</span></div>
     </div>
     <div class="bar" style="margin:.8rem 0 .4rem"><i :style="{ width: level.pct + '%' }"></i></div>
     <p class="note">{{ state.xp }} XP{{ level.next ? ` · ${level.toNext} XP al livello ${level.next}` : ' · livello massimo' }} · record striscia: {{ state.bestStreak }}</p>
-    <p class="note" style="margin:0">Livelli: {{ LEVELS.map((l) => `${l.name} (${l.min})`).join(' → ') }}</p>
+    <p class="note" style="margin:0">Livelli: {{ LEVELS.map((l) => `${l.name} (${l.min})`).join(' › ') }}</p>
   </div>
 
   <h2>Badge</h2>
   <div class="grid two">
     <div v-for="(b, id) in BADGES" :key="id" class="tile" :style="{ opacity: state.badges.includes(id) ? 1 : 0.4 }">
-      <span class="ico">{{ state.badges.includes(id) ? b.icon : '🔒' }}</span>
+      <span class="ico"><Ic :n="state.badges.includes(id) ? b.icon : 'lock'" /></span>
       <strong>{{ b.name }}</strong><small>{{ b.desc }}</small>
     </div>
   </div>

@@ -1,33 +1,54 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, nextTick, onMounted } from 'vue'
+import Cursor from './components/Cursor.vue'
+import { gsap, reduced } from './lib/motion'
 import { RouterView, RouterLink, useRoute } from 'vue-router'
 import { toasts, state, dayKey } from './lib/store'
 const route = useRoute()
 
 const GAMES = ['/giochi', '/indovina', '/decifra', '/password', '/ip-dns', '/arte', '/binario', '/museo']
 const tabs = [
-  { to: '/', label: 'Home', match: ['/'] },
-  { to: '/giochi', label: 'Giochi', match: GAMES },
-  { to: '/sfida', label: 'Sfida del giorno', match: ['/sfida'], center: true },
-  { to: '/mappa', label: 'Mappa di Napoli', match: ['/mappa'] },
-  { to: '/profilo', label: 'Profilo', match: ['/profilo', '/qr'] }
+  { to: '/', ic: 'home', label: 'Home', match: ['/'] },
+  { to: '/giochi', ic: 'gamepad', label: 'Giochi', match: GAMES },
+  { to: '/sfida', ic: 'fire', label: 'Sfida del giorno', match: ['/sfida'], center: true },
+  { to: '/mappa', ic: 'map', label: 'Mappa di Napoli', match: ['/mappa'] },
+  { to: '/profilo', ic: 'user', label: 'Profilo', match: ['/profilo', '/qr'] }
 ]
 const active = computed(() => tabs.findIndex((t) => t.match.includes(route.path)))
 const dailyPending = computed(() => !state.daily[dayKey()])
+
+// ingresso delle pagine: i blocchi salgono a cascata (la landing si anima da sola)
+function onEnter() {
+  if (reduced()) return
+  nextTick(() => {
+    const page = document.querySelector('.page')
+    if (!page) return
+    let kids = [...page.children].filter((n) => !n.classList.contains('landing'))
+    if (kids.length === 1 && kids[0].tagName === 'SECTION') kids = [...kids[0].children]
+    if (!kids.length) return
+    gsap.fromTo(kids, { y: 38, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75, stagger: 0.07, ease: 'expo.out', overwrite: 'auto', clearProps: 'transform,opacity' })
+  })
+}
+
+onMounted(() => {
+  if (reduced()) return
+  gsap.from('.dock', { yPercent: 160, opacity: 0, duration: 1.1, delay: 0.9, ease: 'elastic.out(1, 0.55)' })
+  gsap.from('.top', { yPercent: -100, duration: 0.8, ease: 'expo.out' })
+})
 </script>
 
 <template>
   <header class="top">
     <RouterLink to="/" class="brand"><span class="mark">&lt;/&gt;</span> culture code</RouterLink>
     <RouterLink to="/profilo" class="chip" aria-label="Il tuo profilo">
-      <span v-if="state.streak">🔥 {{ state.streak }}</span>
+      <span v-if="state.streak"><Ic n="fire" /> {{ state.streak }}</span>
       <span>{{ state.xp }} XP</span>
     </RouterLink>
   </header>
 
   <main class="page" :class="{ wide: route.path === '/' }">
     <RouterView v-slot="{ Component }">
-      <Suspense>
+      <Suspense @resolve="onEnter">
         <component :is="Component" :key="route.path" />
         <template #fallback><p class="muted center">Caricamento…</p></template>
       </Suspense>
@@ -38,17 +59,13 @@ const dailyPending = computed(() => !state.daily[dayKey()])
     
       <span v-if="active >= 0" class="bubble" :style="{ '--i': active }" aria-hidden="true"></span>
       <RouterLink v-for="(t, i) in tabs" :key="t.to" :to="t.to" class="dock-item" :class="{ on: i === active }" :aria-label="t.label" :title="t.label">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <template v-if="i === 0"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" /></template>
-          <template v-else-if="i === 1"><rect x="3.5" y="3.5" width="7" height="7" rx="2" /><rect x="13.5" y="3.5" width="7" height="7" rx="2" /><rect x="3.5" y="13.5" width="7" height="7" rx="2" /><rect x="13.5" y="13.5" width="7" height="7" rx="2" /></template>
-          <template v-else-if="i === 2"><path d="M12 3c1 3.5 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 .3 1.2 1 2 2 2-.5-3 0-5 1-8z" /></template>
-          <template v-else-if="i === 3"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></template>
-          <template v-else><circle cx="12" cy="8.5" r="4" /><path d="M4.5 21c.8-4 3.8-6 7.5-6s6.7 2 7.5 6" /></template>
-        </svg>
+        <Ic :n="t.ic" class="dk-ic" />
         <i v-if="t.center && dailyPending" class="dot" aria-hidden="true"></i>
-        <span v-if="t.center && state.streak" class="streak">🔥{{ state.streak }}</span>
+        <span v-if="t.center && state.streak" class="streak">{{ state.streak }}</span>
       </RouterLink>
   </nav>
+
+  <Cursor />
 
   <div class="toasts" aria-live="polite">
     <div v-for="t in toasts" :key="t.id" class="toast">{{ t.text }}</div>

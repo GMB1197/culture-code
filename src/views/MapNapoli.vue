@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { RouterLink } from 'vue-router'
 import L from 'leaflet'
 import { NAPOLI } from '../lib/content'
+import { I, iconSvg } from '../lib/icons'
 import { state, addXp, unlock } from '../lib/store'
 
 const el = ref(null)
@@ -18,7 +19,7 @@ function icon(p) {
   const ok = done.value.includes(p.id)
   return L.divIcon({
     className: '',
-    html: `<div class="pin${ok ? ' ok' : ''}">${ok ? '✓' : p.emoji}</div>`,
+    html: `<div class="pin${ok ? ' ok' : ''}">${iconSvg(ok ? I.check : I[p.ic])}</div>`,
     iconSize: [38, 38],
     iconAnchor: [19, 19]
   })
@@ -61,17 +62,17 @@ onBeforeUnmount(() => map && map.remove())
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Mappa culturale di Napoli</h1>
   <p class="muted">Tocca un luogo: leggi la storia, scopri l'idea digitale e supera la sfida. {{ done.length }} / {{ NAPOLI.length }} completati.</p>
 
   <div ref="el" class="map"></div>
 
   <div v-if="point" class="card" style="margin-top:1rem">
-    <div class="big">{{ point.emoji }}</div>
+    <div class="big"><Ic :n="point.ic" /></div>
     <h2 style="margin-top:.5rem">{{ point.name }}</h2>
     <p>{{ point.story }}</p>
-    <div class="result"><strong>💡 Idea digitale</strong><br />{{ point.idea }}</div>
+    <div class="result"><strong><Ic n="lightbulb" /> Idea digitale</strong><br />{{ point.idea }}</div>
     <h3 style="margin-top:1rem">Sfida: {{ point.q }}</h3>
     <button v-for="(o, idx) in point.o" :key="idx" class="opt"
       :class="{ right: answered !== null && idx === point.a, wrong: answered === idx && idx !== point.a }"
@@ -81,7 +82,7 @@ onBeforeUnmount(() => map && map.remove())
 
   <div v-else class="card note">Scegli un luogo sulla mappa oppure dall'elenco:
     <div class="row" style="margin-top:.6rem">
-      <button v-for="p in NAPOLI" :key="p.id" class="btn ghost" style="padding:.3rem .7rem;font-size:.85rem" @click="select(p.id)">{{ done.includes(p.id) ? '✓' : p.emoji }} {{ p.name }}</button>
+      <button v-for="p in NAPOLI" :key="p.id" class="btn ghost" style="padding:.3rem .7rem;font-size:.85rem" @click="select(p.id)"><Ic :n="done.includes(p.id) ? 'check' : p.ic" /> {{ p.name }}</button>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { QUESTIONS, CAT_LABEL } from '../lib/content'
+import { QUESTIONS, CAT_LABEL, CAT_ICON } from '../lib/content'
 import { shuffle } from '../lib/daily'
 import { addXp, unlock } from '../lib/store'
 
@@ -51,7 +51,7 @@ function next() {
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Indovina il codice</h1>
 
   <div v-if="!started" class="card">
@@ -68,7 +68,7 @@ function next() {
       <span>{{ i + 1 }} / {{ questions.length }}</span>
     </div>
     <div class="bar" style="margin:.7rem 0"><i :style="{ width: (i / questions.length) * 100 + '%' }"></i></div>
-    <div class="big">{{ q.icon }}</div>
+    <div class="big"><Ic :n="CAT_ICON[q.cat]" /></div>
     <h2 style="margin-top:.6rem">{{ q.q }}</h2>
     <button
       v-for="(o, idx) in q.opts"
@@ -87,7 +87,7 @@ function next() {
   </div>
 
   <div v-else class="card center">
-    <div class="big">{{ score === questions.length ? '🏆' : '🎯' }}</div>
+    <div class="big"><Ic :n="score === questions.length ? 'trophy' : 'bullseye'" /></div>
     <h2 style="margin-top:.6rem">{{ score }} su {{ questions.length }}</h2>
     <p class="muted">{{ score === questions.length ? 'Punteggio pieno. Mente curiosa!' : 'Ogni errore è una curiosità in più. Riprova!' }}</p>
     <div class="row" style="justify-content:center">

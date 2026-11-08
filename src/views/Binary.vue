@@ -27,7 +27,7 @@ async function share() {
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Binario o alfabeto?</h1>
   <p class="muted">Scrivi il tuo nome (massimo 16 caratteri) e guarda come lo vede un computer.</p>
 

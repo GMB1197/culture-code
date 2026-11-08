@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { QUESTIONS } from '../lib/content'
+import { QUESTIONS, CAT_ICON } from '../lib/content'
 import { seededRng, shuffle } from '../lib/daily'
 import { caesar, normalizeAnswer } from '../lib/ciphers'
 import { state, dayKey, addXp, unlock, level } from '../lib/store'
@@ -66,15 +66,15 @@ async function share() {
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>Sfida del giorno</h1>
   <p class="muted">{{ new Date().toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' }) }} · stessa sfida per tutti</p>
 
   <div v-if="done" class="card center">
-    <div class="big">{{ done.score === 3 ? '🏆' : '📅' }}</div>
+    <div class="big"><Ic :n="done.score === 3 ? 'trophy' : 'calendarCheck'" /></div>
     <h2 style="margin-top:.6rem">{{ done.score }} su 3</h2>
     <p style="font-size:2rem;margin:.2rem 0 1rem">{{ done.grid }}</p>
-    <p class="muted">🔥 Striscia: {{ state.streak }} giorni · Torna domani per una nuova sfida.</p>
+    <p class="muted"><Ic n="fire" /> Striscia: {{ state.streak }} giorni · Torna domani per una nuova sfida.</p>
     <button class="btn block" @click="share">Condividi nelle storie</button>
     <p v-if="sharing" class="note" style="margin-top:.6rem">{{ sharing }}</p>
   </div>
@@ -84,7 +84,7 @@ async function share() {
     <div class="bar" style="margin:.7rem 0"><i :style="{ width: (step / 3) * 100 + '%' }"></i></div>
 
     <template v-if="cur.type === 'q'">
-      <div class="big">{{ cur.q.icon }}</div>
+      <div class="big"><Ic :n="CAT_ICON[cur.q.cat]" /></div>
       <h2 style="margin-top:.6rem">{{ cur.q.q }}</h2>
       <button v-for="(o, idx) in cur.opts" :key="idx" class="opt"
         :class="{ right: picked !== null && o.ok, wrong: picked === idx && !o.ok }"
@@ -95,7 +95,7 @@ async function share() {
     </template>
 
     <template v-else>
-      <div class="big">🔐</div>
+      <div class="big"><Ic n="key" /></div>
       <h2 style="margin-top:.6rem">Decifra la parola</h2>
       <p class="muted">Ogni lettera è spostata in avanti di <strong>{{ cur.shift }}</strong> posti nell'alfabeto. Torna indietro per leggerla.</p>
       <div class="out mono" style="font-size:1.4rem;letter-spacing:.15em">{{ cur.enc }}</div>

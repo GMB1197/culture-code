@@ -64,7 +64,7 @@ const label = (k) => choices.find((c) => c.k === k).label
 </script>
 
 <template>
-  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
+  <RouterLink to="/giochi" class="back"><Ic n="arrowLeft" /> Giochi</RouterLink>
   <h1>IP o DNS?</h1>
 
   <div v-if="phase === 'intro'" class="card">
@@ -88,7 +88,7 @@ const label = (k) => choices.find((c) => c.k === k).label
   </div>
 
   <div v-else class="card center">
-    <div class="big">{{ score >= 9 ? '🌐' : '📡' }}</div>
+    <div class="big"><Ic :n="score >= 9 ? 'globe' : 'wifi'" /></div>
     <h2 style="margin-top:.6rem">{{ score }} su {{ cards.length }}</h2>
     <p class="muted">{{ score >= 9 ? 'Sei il re del DNS!' : 'Con un po\' di pratica la rubrica di Internet non ha segreti.' }}</p>
     <button class="btn" @click="start">Rigioca</button>
