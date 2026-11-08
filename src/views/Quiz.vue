@@ -51,7 +51,7 @@ function next() {
 </script>
 
 <template>
-  <RouterLink to="/" class="back">← Home</RouterLink>
+  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
   <h1>Indovina il codice</h1>
 
   <div v-if="!started" class="card">

@@ -3,10 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import './style.css'
 import 'leaflet/dist/leaflet.css'
-import Home from './views/Home.vue'
+import Landing from './views/Landing.vue'
+import Games from './views/Games.vue'
 
 const routes = [
-  { path: '/', component: Home, meta: { title: 'Culture Code' } },
+  { path: '/', component: Landing, meta: { title: 'Culture Code' } },
+  { path: '/giochi', component: Games, meta: { title: 'Giochi' } },
   { path: '/sfida', component: () => import('./views/Daily.vue'), meta: { title: 'Sfida del giorno' } },
   { path: '/indovina', component: () => import('./views/Quiz.vue'), meta: { title: 'Indovina il codice' } },
   { path: '/decifra', component: () => import('./views/Cipher.vue'), meta: { title: 'Decifra il messaggio' } },

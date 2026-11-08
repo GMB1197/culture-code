@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <RouterLink to="/" class="back">← Home</RouterLink>
+  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
   <h1>Museo in tasca</h1>
   <p class="muted">Cinque oggetti che hanno cambiato il modo di scrivere, calcolare e raccontare. Ascolta l'audioguida oppure inquadra con la fotocamera.</p>
 

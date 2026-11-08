@@ -8,7 +8,7 @@ import { MUSEUM } from '../lib/content'
 const items = ref([])
 
 const GAMES = [
-  ['/', 'Home'], ['/sfida', 'Sfida del giorno'], ['/indovina', 'Indovina il codice'], ['/decifra', 'Decifra il messaggio'],
+  ['/', 'Home'], ['/giochi', 'Giochi'], ['/sfida', 'Sfida del giorno'], ['/indovina', 'Indovina il codice'], ['/decifra', 'Decifra il messaggio'],
   ['/password', 'Password Cracker'], ['/ip-dns', 'IP o DNS?'], ['/arte', "Il computer vede l'arte"],
   ['/museo', 'Museo in tasca'], ['/mappa', 'Mappa di Napoli'], ['/binario', 'Binario o alfabeto?']
 ]
@@ -28,7 +28,7 @@ const reelsWithLink = REELS
 </script>
 
 <template>
-  <RouterLink to="/" class="back">← Home</RouterLink>
+  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
   <h1>QR e reel</h1>
   <p class="muted">QR code pronti da mettere nei video, nelle storie o nei cartelli. Scaricali con il tasto. Se il sito è su un dominio tuo, imposta <span class="mono">VITE_SITE_URL</span> prima della build.</p>
 

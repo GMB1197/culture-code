@@ -42,3 +42,7 @@ Quando hai il dominio definitivo, aggiungi su Vercel la variabile `VITE_SITE_URL
 - La mappa usa i tile di OpenStreetMap (serve connessione; i tile visti vengono messi in cache).
 - La realtà aumentata richiede HTTPS e il permesso della fotocamera; l'audioguida usa la sintesi vocale del dispositivo.
 - Il Password Cracker è didattico: la password non lascia mai il dispositivo.
+
+## Licenza
+
+Codice rilasciato con licenza [MIT](LICENSE): puoi leggerlo, copiarlo, modificarlo e condividerlo. Controlla l'intestazione del copyright nel file `LICENSE`.

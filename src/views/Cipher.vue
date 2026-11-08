@@ -56,7 +56,7 @@ function reset() {
 </script>
 
 <template>
-  <RouterLink to="/" class="back">← Home</RouterLink>
+  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
   <h1>Decifra il messaggio</h1>
   <div class="row" style="margin-bottom:1rem">
     <button v-for="(l, i) in CIPHER_LEVELS" :key="l.id" class="btn" :class="{ ghost: i !== idx }"

@@ -32,7 +32,7 @@ const tips = [
 </script>
 
 <template>
-  <RouterLink to="/" class="back">← Home</RouterLink>
+  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
   <h1>Password Cracker</h1>
   <p class="muted">Scrivi una password e guarda quanto ci metterebbe un attaccante a indovinarla. Tutto resta nel tuo telefono: non viene inviata a nessuno.</p>
 

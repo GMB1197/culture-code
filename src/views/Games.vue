@@ -21,7 +21,7 @@ const exp = [
 
 <template>
   <section>
-    <p class="pill">dove il codice incontra la cultura</p>
+    <p class="pill">sezione giochi</p>
     <h1>Gioca. Decifra. Scopri.</h1>
     <p class="muted">Mini giochi ed esperienze dal profilo <strong>@cltrcode</strong>: informatica spiegata bene, con la cultura al centro.</p>
 

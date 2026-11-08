@@ -61,7 +61,7 @@ onBeforeUnmount(() => map && map.remove())
 </script>
 
 <template>
-  <RouterLink to="/" class="back">← Home</RouterLink>
+  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
   <h1>Mappa culturale di Napoli</h1>
   <p class="muted">Tocca un luogo: leggi la storia, scopri l'idea digitale e supera la sfida. {{ done.length }} / {{ NAPOLI.length }} completati.</p>
 

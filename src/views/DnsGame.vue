@@ -64,7 +64,7 @@ const label = (k) => choices.find((c) => c.k === k).label
 </script>
 
 <template>
-  <RouterLink to="/" class="back">← Home</RouterLink>
+  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
   <h1>IP o DNS?</h1>
 
   <div v-if="phase === 'intro'" class="card">

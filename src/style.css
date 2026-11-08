@@ -126,3 +126,6 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .result.bad { background: rgba(235, 87, 87, .08); border-color: rgba(235, 87, 87, .4); }
 .out { background: var(--bg3); border: 1px solid var(--line); border-radius: 12px; padding: .8rem 1rem; font-family: var(--mono); font-size: .9rem; word-break: break-word; margin-bottom: .6rem; }
 .out small { display: block; color: var(--muted); font-family: system-ui, sans-serif; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .2rem; }
+
+/* landing a tutta larghezza */
+.page.wide { max-width: none; padding: 0 0 6rem; }

@@ -20,7 +20,7 @@ const days = Object.entries(state.daily).sort().reverse().slice(0, 7)
 </script>
 
 <template>
-  <RouterLink to="/" class="back">← Home</RouterLink>
+  <RouterLink to="/giochi" class="back">← Giochi</RouterLink>
   <h1>Il tuo profilo</h1>
 
   <div class="card">

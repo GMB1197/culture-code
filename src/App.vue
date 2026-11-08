@@ -13,7 +13,7 @@ const route = useRoute()
     </RouterLink>
   </header>
 
-  <main class="page">
+  <main class="page" :class="{ wide: route.path === '/' }">
     <RouterView v-slot="{ Component }">
       <Suspense>
         <component :is="Component" :key="route.path" />
@@ -24,6 +24,7 @@ const route = useRoute()
 
   <nav class="tabbar" aria-label="Navigazione">
     <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/giochi">Giochi</RouterLink>
     <RouterLink to="/sfida">Sfida</RouterLink>
     <RouterLink to="/mappa">Mappa</RouterLink>
     <RouterLink to="/profilo">{{ level.name.split(' ')[0] }}</RouterLink>
